@@ -12,7 +12,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
-import org.junit.After
+import org.hamcrest.Matchers
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -41,12 +41,12 @@ class RemindersListViewModelTest {
     fun setUp() {
         stopKoin()
         val applicationMock = Mockito.mock(Application::class.java)
-        dataSource = FakeDataSource()
+        dataSource = FakeDataSource(RemindersData.listReminders)
         viewModel = RemindersListViewModel(applicationMock, dataSource)
     }
 
     @Test
-    fun loadReminders_AndVerify_ShowLoading() = runBlockingTest {
+    fun loadReminders_AndVerify_ShowLoading() = mainCoroutineRule.runBlockingTest {
 
         mainCoroutineRule.pauseDispatcher()
 
@@ -60,25 +60,23 @@ class RemindersListViewModelTest {
     }
 
     @Test
-    fun loadReminders_AndVerify_Success() = runBlockingTest {
-
-        dataSource.returnError = false
-        RemindersData.listReminders.forEach {reminderDTO ->
-            dataSource.saveReminder(reminderDTO)
-        }
-
+    fun noReminders_showsNoData() = mainCoroutineRule.runBlockingTest {
+        dataSource.deleteAllReminders()
         viewModel.loadReminders()
-
-        assertThat(viewModel.remindersList.getOrAwaitValue().size, `is`(RemindersData.listReminders.size))
+        assertThat(viewModel.showNoData.getOrAwaitValue(), Matchers.`is`(true))
     }
 
     @Test
-    fun loadReminders_AndVerify_Error() = runBlockingTest {
-
-        dataSource.returnError = true
-
+    fun loadReminders_AndVerify_Error() = mainCoroutineRule.runBlockingTest {
+        dataSource.setShouldReturnError(true)
         viewModel.loadReminders()
+        assertThat(viewModel.showSnackBar.value, Matchers.`is`("Reminders not found"))
+    }
 
-        assertThat(viewModel.showSnackBar.getOrAwaitValue(), `is`("Fake Error get all"))
+    @Test
+    fun loadReminders_AndVerify_Success() = mainCoroutineRule.runBlockingTest {
+        dataSource.setShouldReturnError(false)
+        viewModel.loadReminders()
+        assertThat(viewModel.remindersList.getOrAwaitValue().size, `is`(RemindersData.listReminders.size))
     }
 }

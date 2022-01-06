@@ -50,9 +50,8 @@ class RemindersLocalRepositoryTest {
     }
 
     @After
-    fun cleanUp() {
-        database.close()
-    }
+    fun cleanUp()= database.close()
+
 
     @Test
     fun saveReminder_AndVerify_Insert() = runBlocking {

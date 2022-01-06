@@ -45,7 +45,7 @@ class SaveReminderViewModelTest {
     @Before
     fun setUp() {
         stopKoin()
-        fakeDataSource = FakeDataSource()
+        fakeDataSource = FakeDataSource(RemindersData.listReminders)
         context = ApplicationProvider.getApplicationContext()
 
         viewModel = SaveReminderViewModel(

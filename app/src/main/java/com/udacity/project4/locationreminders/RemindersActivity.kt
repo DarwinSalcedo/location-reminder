@@ -3,6 +3,7 @@ package com.udacity.project4.locationreminders
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
@@ -23,7 +24,6 @@ class RemindersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reminders)
         checkLogin()
-
     }
 
     private fun checkLogin() {

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Location Reminders</string>
+    <string name="save_location">Save Location</string>
     <string name="error_happened">Error happened</string>
     <string name="retry">Retry</string>
     <string name="no_data">No Data</string>
@@ -32,6 +33,7 @@
     <string name="geofences_not_added">Problem in adding geofences.</string>
     <string name="welcome">Welcome</string>
     <string name="err_enter_title">Please enter title</string>
+    <string name="err_enter_description">Please enter description</string>
     <string name="err_select_location">Please select location</string>
 
     <!-- Error strings -->
@@ -40,4 +42,5 @@
     <string name="geofence_too_many_geofences">Your app has registered too many geofences.</string>
     <string name="geofence_too_many_pending_intents">You have provided too many PendingIntents to the addGeofences() call.</string>
     <string name="error_adding_geofence">Error Happened, Can\'t Add Geofence</string>
+    <string name="current_position">Current location</string>
 </resources>

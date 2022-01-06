@@ -31,8 +31,6 @@ class RemindersDaoTest {
 
     private lateinit var database: RemindersDatabase
 
-
-
     @Before
     fun init() {
         database = Room.inMemoryDatabaseBuilder(
@@ -48,7 +46,6 @@ class RemindersDaoTest {
     fun saveReminder_andVerify_insert() = runBlockingTest {
 
         val reminderDTO = RemindersData.listReminders[0]
-
         database.reminderDao().saveReminder(reminderDTO)
         val reminderResult = database.reminderDao().getReminderById(reminderDTO.id)
 
