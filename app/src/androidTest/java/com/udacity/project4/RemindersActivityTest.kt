@@ -15,10 +15,8 @@ import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import androidx.test.rule.ActivityTestRule
 import androidx.test.rule.GrantPermissionRule
 import com.udacity.project4.authentication.AuthenticationViewModel
 import com.udacity.project4.locationreminders.RemindersActivity
@@ -60,6 +58,14 @@ import org.hamcrest.CoreMatchers.not
 class RemindersActivityTest :
     KoinTest {// Extended Koin Test - embed autoclose @after method to close Koin after every test
 
+    @Rule
+    @JvmField
+    var permissionLocation: GrantPermissionRule = GrantPermissionRule.grant("android.permission.ACCESS_FINE_LOCATION")
+
+    @Rule
+    @JvmField
+    var permissionruleBackgroundLocation: GrantPermissionRule = GrantPermissionRule.grant("android.permission.ACCESS_BACKGROUND_LOCATION")
+
     /*lateinit var decorView: View
 
     @get:Rule
@@ -72,8 +78,6 @@ class RemindersActivityTest :
 
     private val dataBindingIdlingResource = DataBindingIdlingResource()
 
-    @get:Rule
-    var instantExecutorRule = InstantTaskExecutorRule()
     /**
      * As we use Koin as a Service Locator Library to develop our code, we'll also use Koin to test our code.
      * at this step we will initialize Koin related code to be able to use it in out testing.

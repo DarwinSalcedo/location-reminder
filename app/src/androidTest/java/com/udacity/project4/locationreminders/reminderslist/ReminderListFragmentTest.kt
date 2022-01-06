@@ -16,14 +16,13 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
 import com.udacity.project4.R
-import com.udacity.project4.locationreminders.RemindersData
 import com.udacity.project4.locationreminders.data.ReminderDataSource
 import com.udacity.project4.locationreminders.data.local.LocalDB
 import com.udacity.project4.locationreminders.data.local.RemindersLocalRepository
 import com.udacity.project4.util.DataBindingIdlingResource
 import com.udacity.project4.util.RecyclerViewItemCountAssertion
-import com.udacity.project4.util.monitorFragment
 import com.udacity.project4.utils.EspressoIdlingResource
+import com.udacity.project4.utils.RemindersData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.After
