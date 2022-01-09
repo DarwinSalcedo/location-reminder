@@ -1,4 +1,4 @@
-package com.udacity.project4.locationreminders
+package com.udacity.project4
 
 import android.app.Application
 import android.view.View
@@ -18,8 +18,8 @@ import androidx.test.filters.LargeTest
 import androidx.test.rule.GrantPermissionRule
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.PointOfInterest
-import com.udacity.project4.R
 import com.udacity.project4.authentication.AuthenticationViewModel
+import com.udacity.project4.locationreminders.RemindersActivity
 import com.udacity.project4.locationreminders.data.ReminderDataSource
 import com.udacity.project4.locationreminders.data.local.LocalDB
 import com.udacity.project4.locationreminders.data.local.RemindersLocalRepository
